@@ -1,0 +1,90 @@
+package com.ignisnw.ignisguard.telegram.command.list;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ignisnw.ignisguard.dto.IdeaYoutubeModelDTO;
+import com.ignisnw.ignisguard.model.IdeaYoutubeModel;
+import com.ignisnw.ignisguard.service.list.IdeaYoutubeService;
+import com.ignisnw.ignisguard.telegram.TelegramBot;
+import com.ignisnw.ignisguard.telegram.command.Command;
+import lombok.Getter;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Getter
+public class SendCommand implements Command {
+
+    private final TelegramBot telegramBot;
+    private final IdeaYoutubeService ideaYoutubeService;
+    private final String name = "send";
+    private final List<String> aliases = new ArrayList<>();
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final List<IdeaYoutubeModel> ideaYoutubeModels = new ArrayList<>();
+
+    public SendCommand(TelegramBot telegramBot, IdeaYoutubeService ideaYoutubeService) {
+        this.telegramBot = telegramBot;
+        this.ideaYoutubeService = ideaYoutubeService;
+    }
+
+    @Override
+    public void execute(Update update) {
+        String chatId = update.getMessage().getChatId().toString();
+        String messageText = update.getMessage().getText();
+        String[] parts = messageText.split(" ", 3);
+
+        if (parts.length < 3) {
+            sendMessage(chatId, this.getUsage());
+            return;
+        }
+
+        List<String> documentUrls = Arrays.asList(parts[1].split(","));
+        List<String> imageUrls = Arrays.asList(parts[2].split(","));
+
+        StringBuilder responseText = new StringBuilder("Document URLs:\n");
+        documentUrls.forEach(url -> responseText.append("- ").append(url).append("\n"));
+        responseText.append("\nImage URLs:\n");
+        imageUrls.forEach(url -> responseText.append("- ").append(url).append("\n"));
+
+        sendMessage(chatId, responseText.toString());
+
+        // Create a new model and parse it to JSON using Jackson
+        IdeaYoutubeModel ideaYoutubeModel = new IdeaYoutubeModel(null, documentUrls, imageUrls);
+        ideaYoutubeModels.add(ideaYoutubeModel);
+        try {
+            String json = objectMapper.writeValueAsString(ideaYoutubeModel);
+            sendMessage(chatId, "Parsed JSON:\n" + json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            sendMessage(chatId, "Failed to parse JSON");
+        }
+
+        ideaYoutubeService.create(IdeaYoutubeModelDTO.fromEntity(ideaYoutubeModel));
+    }
+
+    private void sendMessage(String chatId, String text) {
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId);
+        message.setText(text);
+
+        try {
+            telegramBot.execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String getDescription() {
+        return "Send a document with URLs.";
+    }
+
+    @Override
+    public String getUsage() {
+        return "Usage: /" + name +  " <documentUrls> <imageUrls>";
+    }
+}
