@@ -12,9 +12,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Getter
 public class SendCommand implements Command {
@@ -37,13 +35,23 @@ public class SendCommand implements Command {
         String messageText = update.getMessage().getText();
         String[] parts = messageText.split(" ", 3);
 
-        if (parts.length < 3) {
+        if (parts.length < 2) {
             sendMessage(chatId, this.getUsage());
             return;
         }
 
-        List<String> documentUrls = Arrays.asList(parts[1].split(","));
-        List<String> imageUrls = Arrays.asList(parts[2].split(","));
+        Set<String> documentUrls = new HashSet<>(Arrays.asList(parts[1].split(",")));
+        Set<String> imageUrls = new HashSet<>();
+
+        if (parts.length > 2) {
+            for (String url : parts[2].split(",")) {
+                if (url.matches(".*\\.(jpg|jpeg|png|gif|bmp|webp)$")) {
+                    imageUrls.add(url);
+                } else {
+                    documentUrls.add(url);
+                }
+            }
+        }
 
         StringBuilder responseText = new StringBuilder("Document URLs:\n");
         documentUrls.forEach(url -> responseText.append("- ").append(url).append("\n"));
@@ -53,7 +61,7 @@ public class SendCommand implements Command {
         sendMessage(chatId, responseText.toString());
 
         // Create a new model and parse it to JSON using Jackson
-        IdeaYoutubeModel ideaYoutubeModel = new IdeaYoutubeModel(null, documentUrls, imageUrls);
+        IdeaYoutubeModel ideaYoutubeModel = new IdeaYoutubeModel(null, new ArrayList<>(documentUrls), new ArrayList<>(imageUrls));
         ideaYoutubeModels.add(ideaYoutubeModel);
         try {
             String json = objectMapper.writeValueAsString(ideaYoutubeModel);

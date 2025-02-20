@@ -10,6 +10,12 @@ spring:
   data:
     mongodb:
       uri: mongodb://admin:ELzy8UGzJ7ErGsEwZh6zvTZfjykxy7REqUezfaFEBp7ELawMTHpsgy8Nf@194.164.172.33:27018/n8n-restapi?authSource=admin
+      database: n8n-restapi
+      connection-timeout: 3000
+      socket-timeout: 3000
+      max-wait-time: 1000
+      min-connections-per-host: 1
+      max-connections-per-host: 10
   # External Config Files
   config:
     import: classpath:config/config.yml
