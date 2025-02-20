@@ -7,7 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Establece el directorio de trabajo
-WORKDIR /ignisguard
+WORKDIR /n8n_restapi
 
 # Copia los archivos de la aplicación al contenedor
 COPY . .
@@ -24,13 +24,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Establece el directorio de trabajo
-WORKDIR /ignisguard
+WORKDIR /n8n_restapi
 
 # Copia solo los archivos necesarios para la ejecución desde la imagen de construcción
-COPY --from=0 /ignisguard/build/libs/*.jar IgnisGuard.jar
+COPY --from=0 /n8n_restapi/build/libs/*.jar N8N_RestAPI.jar
 
 # Expone el puerto en el que la aplicación se ejecutará
 EXPOSE 9501
 
 # Comando para ejecutar la aplicación cuando se inicia el contenedor
-CMD ["java", "-jar", "IgnisGuard.jar"]
+CMD ["java", "-jar", "N8N_RestAPI.jar"]

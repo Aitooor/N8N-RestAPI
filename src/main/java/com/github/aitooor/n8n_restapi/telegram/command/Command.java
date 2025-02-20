@@ -1,4 +1,4 @@
-package com.ignisnw.ignisguard.telegram.command;
+package com.github.aitooor.n8n_restapi.telegram.command;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
 

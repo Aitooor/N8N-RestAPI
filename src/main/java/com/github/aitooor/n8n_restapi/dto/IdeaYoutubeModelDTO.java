@@ -1,6 +1,6 @@
-package com.ignisnw.ignisguard.dto;
+package com.github.aitooor.n8n_restapi.dto;
 
-import com.ignisnw.ignisguard.model.IdeaYoutubeModel;
+import com.github.aitooor.n8n_restapi.model.IdeaYoutubeModel;
 import lombok.*;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;

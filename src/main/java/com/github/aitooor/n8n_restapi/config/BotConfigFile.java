@@ -1,4 +1,4 @@
-package com.ignisnw.ignisguard.config;
+package com.github.aitooor.n8n_restapi.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

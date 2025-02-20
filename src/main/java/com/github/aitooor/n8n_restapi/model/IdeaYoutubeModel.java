@@ -1,4 +1,4 @@
-package com.ignisnw.ignisguard.model;
+package com.github.aitooor.n8n_restapi.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

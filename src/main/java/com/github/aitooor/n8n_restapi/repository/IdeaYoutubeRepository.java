@@ -1,6 +1,6 @@
-package com.ignisnw.ignisguard.repository;
+package com.github.aitooor.n8n_restapi.repository;
 
-import com.ignisnw.ignisguard.dto.IdeaYoutubeModelDTO;
+import com.github.aitooor.n8n_restapi.dto.IdeaYoutubeModelDTO;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

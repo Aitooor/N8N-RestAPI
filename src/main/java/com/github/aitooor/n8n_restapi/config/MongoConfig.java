@@ -1,4 +1,4 @@
-package com.ignisnw.ignisguard.config;
+package com.github.aitooor.n8n_restapi.config;
 
 import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Value;

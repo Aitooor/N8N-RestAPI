@@ -1,4 +1,4 @@
-package com.ignisnw.ignisguard.service;
+package com.github.aitooor.n8n_restapi.service;
 
 import java.util.List;
 import java.util.Optional;

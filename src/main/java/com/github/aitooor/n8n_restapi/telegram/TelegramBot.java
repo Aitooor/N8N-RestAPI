@@ -1,8 +1,8 @@
-package com.ignisnw.ignisguard.telegram;
+package com.github.aitooor.n8n_restapi.telegram;
 
-import com.ignisnw.ignisguard.config.BotConfigFile;
-import com.ignisnw.ignisguard.telegram.command.Command;
-import com.ignisnw.ignisguard.telegram.command.CommandManager;
+import com.github.aitooor.n8n_restapi.config.BotConfigFile;
+import com.github.aitooor.n8n_restapi.telegram.command.Command;
+import com.github.aitooor.n8n_restapi.telegram.command.CommandManager;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

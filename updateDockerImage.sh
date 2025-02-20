@@ -2,7 +2,7 @@
 
 versionLatest="latest"
 version="0.0.3"
-repository="aitooor/ignisguard"
+repository="aitooor/n8n_restapi"
 
 # Limpia y borra todos los builders de Buildx viejos inactivos
 docker buildx rm --all-inactive --force

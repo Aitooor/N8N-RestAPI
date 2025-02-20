@@ -1,7 +1,7 @@
-package com.ignisnw.ignisguard.controller;
+package com.github.aitooor.n8n_restapi.controller;
 
-import com.ignisnw.ignisguard.dto.IdeaYoutubeModelDTO;
-import com.ignisnw.ignisguard.service.list.IdeaYoutubeService;
+import com.github.aitooor.n8n_restapi.dto.IdeaYoutubeModelDTO;
+import com.github.aitooor.n8n_restapi.service.list.IdeaYoutubeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

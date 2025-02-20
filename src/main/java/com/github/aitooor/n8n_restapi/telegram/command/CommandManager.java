@@ -1,8 +1,8 @@
-package com.ignisnw.ignisguard.telegram.command;
+package com.github.aitooor.n8n_restapi.telegram.command;
 
-import com.ignisnw.ignisguard.service.list.IdeaYoutubeService;
-import com.ignisnw.ignisguard.telegram.TelegramBot;
-import com.ignisnw.ignisguard.telegram.command.list.SendCommand;
+import com.github.aitooor.n8n_restapi.service.list.IdeaYoutubeService;
+import com.github.aitooor.n8n_restapi.telegram.TelegramBot;
+import com.github.aitooor.n8n_restapi.telegram.command.list.SendCommand;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import org.springframework.context.annotation.Lazy;

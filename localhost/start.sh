@@ -6,7 +6,7 @@ VERSION="0.0.3"
 PORT="9500"
 
 # Jar file name
-JAR_NAME="IgnisGuard-$VERSION.jar"
+JAR_NAME="N8N_RestAPI-$VERSION.jar"
 
 # Need Java 17 to run
 JAVA_PATH="/Users/milu/Library/Java/JavaVirtualMachines/openjdk-17.0.2/Contents/Home/bin"

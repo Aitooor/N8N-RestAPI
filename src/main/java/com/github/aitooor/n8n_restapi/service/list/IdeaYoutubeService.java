@@ -1,8 +1,8 @@
-package com.ignisnw.ignisguard.service.list;
+package com.github.aitooor.n8n_restapi.service.list;
 
-import com.ignisnw.ignisguard.dto.IdeaYoutubeModelDTO;
-import com.ignisnw.ignisguard.repository.IdeaYoutubeRepository;
-import com.ignisnw.ignisguard.service.CrudService;
+import com.github.aitooor.n8n_restapi.dto.IdeaYoutubeModelDTO;
+import com.github.aitooor.n8n_restapi.repository.IdeaYoutubeRepository;
+import com.github.aitooor.n8n_restapi.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
