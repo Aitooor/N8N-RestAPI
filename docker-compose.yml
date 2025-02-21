@@ -27,4 +27,5 @@ services:
 
 networks:
   internal:
+    name: n8n-restapi-network
     driver: bridge
