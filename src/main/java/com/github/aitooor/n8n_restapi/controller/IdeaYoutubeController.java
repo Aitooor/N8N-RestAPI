@@ -48,28 +48,6 @@ public class IdeaYoutubeController {
         }
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<String> updateYoutubeIdea(@PathVariable String id, @RequestBody IdeaYoutubeModelDTO updatedIdea) {
-        try {
-            if (updatedIdea == null || updatedIdea.getId() == null || updatedIdea.getId().isEmpty()) {
-                // If the ID in the body of the JSON is null or empty, assigns the ID of the PathVariable
-                Objects.requireNonNull(updatedIdea).setId(id);
-            }
-
-            Optional<IdeaYoutubeModelDTO> existingIdea = ideaYoutubeService.getModel(id);
-
-            if (existingIdea.isPresent()) {
-                ideaYoutubeService.update(id, updatedIdea);
-                return new ResponseEntity<>("IdeaYoutubeModelDTO updated successfully", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("IdeaYoutubeModelDTO not found", HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            // Log the exception or handle it as needed
-            return new ResponseEntity<>("Failed to update idea", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> deleteYoutubeIdea(@PathVariable String id) {
         try {
