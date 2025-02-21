@@ -1,6 +1,6 @@
 # Server Configuration
 server:
-  port: 9500
+  port: 9502
 
 # Spring Configuration
 spring:
