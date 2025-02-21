@@ -6,6 +6,8 @@ import java.util.Optional;
 public interface CrudService<T> {
     List<T> getAllItems();
     long count();
+    Optional<T> getRandomModel();
+    Optional<T> getNextModel();
     Optional<T> getModel(String id);
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     boolean exist(String id);

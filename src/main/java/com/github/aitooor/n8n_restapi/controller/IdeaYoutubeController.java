@@ -26,6 +26,20 @@ public class IdeaYoutubeController {
         return ideaYoutubeService.count();
     }
 
+    @GetMapping(value="/randomModel", produces = "application/json")
+    public ResponseEntity<IdeaYoutubeModelDTO> getRandomYoutubeIdea() {
+        Optional<IdeaYoutubeModelDTO> idea = ideaYoutubeService.getRandomModel();
+        return idea.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping(value="/nextModel", produces = "application/json")
+    public ResponseEntity<IdeaYoutubeModelDTO> getNextYoutubeIdea() {
+        Optional<IdeaYoutubeModelDTO> idea = ideaYoutubeService.getNextModel();
+        return idea.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @GetMapping(value="/{id}", produces = "application/json")
     public ResponseEntity<IdeaYoutubeModelDTO> getYoutubeIdeaById(@PathVariable String id) {
         Optional<IdeaYoutubeModelDTO> idea = ideaYoutubeService.getModel(id);
