@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  n8n_restapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9502:9502"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://admin:ELzy8UGzJ7ErGsEwZh6zvTZfjykxy7REqUezfaFEBp7ELawMTHpsgy8Nf@mongodb:27017/n8n-restapi?authSource=admin
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ELzy8UGzJ7ErGsEwZh6zvTZfjykxy7REqUezfaFEBp7ELawMTHpsgy8Nf
+      MONGO_INITDB_DATABASE: n8n-restapi
